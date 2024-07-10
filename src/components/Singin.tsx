@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import useUserlogin from "../hooks/useUserloginandlogout";
 import toast, { Toaster } from "react-hot-toast";
 
-type SigninTypes = {
+export type SigninTypes = {
   Email: string;
   Password: string;
   category: string;
@@ -20,7 +20,8 @@ const Signin: React.FC = () => {
         Email: "testuser@gmail.com",
         Password: "testuser@2021",
       };
-      login();
+      console.log(data);
+      login(obj);
       toast.success("Successfully logged in");
     } else {
       if (!data.Email.includes("@") || data.Password.length < 8) {
@@ -30,7 +31,7 @@ const Signin: React.FC = () => {
       } else {
         console.log(data);
         toast.success("Successfully logged in");
-        login();
+        login(data);
       }
     }
   };

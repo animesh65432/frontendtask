@@ -3,32 +3,33 @@ import { useForm } from "react-hook-form";
 import useUserlogin from "../hooks/useUserloginandlogout";
 import toast, { Toaster } from "react-hot-toast";
 
-type SinginTypes = {
+type SigninTypes = {
   Email: string;
   Password: string;
+  category: string;
 };
 
-const Singin: React.FC = () => {
-  const { handleSubmit, register } = useForm<SinginTypes>();
+const Signin: React.FC = () => {
+  const { handleSubmit, register } = useForm<SigninTypes>();
   const [login] = useUserlogin();
 
-  const onshubmit = (data: SinginTypes) => {
+  const onSubmit = (data: SigninTypes) => {
     if (data.Email === "" && data.Password === "") {
       let obj = {
         ...data,
-        Email: "testuser@gmail.com ",
+        Email: "testuser@gmail.com",
         Password: "testuser@2021",
       };
       login();
-      toast.success("sucessfully login");
+      toast.success("Successfully logged in");
     } else {
-      if (!data.Email.includes("@.") || data.Password.length < 8) {
+      if (!data.Email.includes("@") || data.Password.length < 8) {
         toast.error(
-          "Please give the original email or please give the password which is greater than 8"
+          "Please provide a valid email or ensure the password is at least 8 characters long"
         );
       } else {
         console.log(data);
-        toast.success("sucessfully login");
+        toast.success("Successfully logged in");
         login();
       }
     }
@@ -36,12 +37,20 @@ const Singin: React.FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onshubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="Email">Email</label>
         <input type="text" {...register("Email")} />
 
         <label htmlFor="Password">Password</label>
         <input type="password" {...register("Password")} />
+
+        <label htmlFor="category">Category</label>
+        <select id="category" {...register("category")}>
+          <option value="sports">Sports</option>
+          <option value="arts">Arts</option>
+          <option value="history">History</option>
+          <option value="physics">Physics</option>
+        </select>
 
         <button type="submit">Submit</button>
       </form>
@@ -50,4 +59,4 @@ const Singin: React.FC = () => {
   );
 };
 
-export default Singin;
+export default Signin;

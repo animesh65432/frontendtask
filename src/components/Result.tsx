@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+
 const calculatePercentage = (result: number[]) => {
   if (result.length === 0) {
     return 0;
@@ -21,13 +22,26 @@ const Result: React.FC = () => {
   const correctedanswers = result.reduce((acc, cur) => acc + cur, 0);
 
   return (
-    <div>
-      <div>
-        <h1>Results Page</h1>
-        <p>Percentage: {percentage.toFixed(2)}%</p>
-        <p>Total Questions: {Totalnumbers}</p>
-        <p>Correct Answers: {correctedanswers}</p>
-        <p>Notes: {notepad}</p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-4">Results Page</h1>
+        <div className="mb-4">
+          <p className="text-lg">
+            <span className="font-semibold">Percentage:</span>{" "}
+            {percentage.toFixed(2)}%
+          </p>
+          <p className="text-lg">
+            <span className="font-semibold">Total Questions:</span>{" "}
+            {Totalnumbers}
+          </p>
+          <p className="text-lg">
+            <span className="font-semibold">Correct Answers:</span>{" "}
+            {correctedanswers}
+          </p>
+          <p className="text-lg">
+            <span className="font-semibold">Notes:</span> {notepad}
+          </p>
+        </div>
       </div>
     </div>
   );

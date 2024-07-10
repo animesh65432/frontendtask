@@ -33,12 +33,10 @@ const TimerSection: React.FC = () => {
   const formattedSec = sec < 10 ? `0${sec}` : sec;
 
   return (
-    <div>
-      <div>
-        <p>
-          Time: {min}:{formattedSec}
-        </p>
-      </div>
+    <div className="flex justify-center items-center h-16 bg-gray-200 rounded-md shadow-md">
+      <p className="text-2xl font-bold text-gray-800">
+        Time: {min}:{formattedSec}
+      </p>
     </div>
   );
 };

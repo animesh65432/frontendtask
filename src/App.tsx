@@ -4,6 +4,7 @@ import Singin from "./components/Singin";
 import Result from "./components/Result";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import Header from "./components/Header";
 
 export default function App() {
   const isUserLogin = useSelector((state: RootState) => state.user.islogin);
@@ -12,27 +13,30 @@ export default function App() {
   );
 
   return (
-    <Routes>
-      {!isUserLogin && (
-        <>
-          <Route path="/login" element={<Singin />} />
-          <Route path="*" element={<Navigate to="/login" />} />
-        </>
-      )}
+    <>
+      {isUserLogin && !istestcomplete && <Header />}
+      <Routes>
+        {!isUserLogin && (
+          <>
+            <Route path="/login" element={<Singin />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
 
-      {isUserLogin && !istestcomplete && (
-        <>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </>
-      )}
+        {isUserLogin && !istestcomplete && (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </>
+        )}
 
-      {istestcomplete && (
-        <>
-          <Route path="/results" element={<Result />} />
-          <Route path="*" element={<Navigate to="/results" />} />
-        </>
-      )}
-    </Routes>
+        {istestcomplete && (
+          <>
+            <Route path="/results" element={<Result />} />
+            <Route path="*" element={<Navigate to="/results" />} />
+          </>
+        )}
+      </Routes>
+    </>
   );
 }

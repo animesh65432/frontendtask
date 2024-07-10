@@ -8,7 +8,7 @@ type TimeSlicesTypes = {
 
 const initialState: TimeSlicesTypes = {
   isfinish: JSON.parse(localStorage.getItem("isfinish") as string) || false,
-  min: JSON.parse(localStorage.getItem("min") as string) || 1,
+  min: JSON.parse(localStorage.getItem("min") as string) || 5,
   sec: JSON.parse(localStorage.getItem("sec") as string) || 0,
 };
 
